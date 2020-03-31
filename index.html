@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script> -->
+  <!-- To start: run `npx http-server -->
+</head>
+<body>
+  <div>
+    <h2>Day 10</h2>
+    <svg id="day-10"></svg>
+  </div>
+  <div class="vul">
+    <h2>Vulnerabilities</h2>
+    <svg id="vulLegend"></svg>
+    <svg id="vul"></svg>
+  </div>
+  <div class="day-9">
+    <h2>day 9</h2>
+    <svg class="legend"></svg>
+    <svg id="day-9"></svg>
+  </div>
+  <div class="day-8">
+    <h2>day 8</h2>
+    <svg id="day-8"></svg>
+  </div>
+  <div class="day-7">
+    <h2>day 7</h2>
+    <svg id="day-7"></svg>
+  </div>
+  <div class="day-6">
+    <h2>day 6</h2>
+    <svg id="day-6"></svg>
+  </div>
+  <div class="day-5">
+    <h2>day 5</h2>
+    <svg class="day-5a"></svg>
+  </div>
+  <div class="day-4">
+    <h2>day 4</h2>
+    <svg height="130" width="300" style="border: 1px solid #ccc" class="day-4a"></svg>
+  </div>
+  <div class="day-3">
+    <h2>day 3</h2>
+    <svg height="160" width="160" style="border: 1px solid #ccc" class="day-3a"></svg>
+  </div>
+  <div class="day-2">
+    <h2>day 2</h2>
+    <div>Adjust the y value (0 - 140)</div>
+    <input type="range" id="y-scale" min="0" max="140" />
+    <div>Adjust the x value (0 - 4)</div>
+    <input type="range" id="x-scale" min="0" max="4" />
+    <div>Adjust the color</div>
+    <input type="range" id="color-scale" min="0" max="100" />
+
+    <svg class="day-2a" height="160" width="160" style="border:1px solid #ccc"></svg>
+    
+    <svg height="160" width="160" style="border: 1px solid #ccc" class="day-2b"></svg>
+  </div>
+  <div class="day-1">
+    <h2>day 1</h2>
+    <svg class="day-1a" height="40" width="40" style="border:1px solid #ccc"></svg>
+    <svg class="day-1b" height="40" width="160" style="border: 1px solid #ccc" ></svg>
+  </div>
+  <script src="./day-1.js"></script>
+  <script src="./day-2.js"></script>
+  <script src="./day-3.js"></script>
+  <script src="./day-4.js"></script>
+  <script src="./day-5.js"></script>
+  <script src="./day-6.js"></script>
+  <script src="./day-7.js"></script>
+  <script src="./day-8.js"></script>
+  <script src="./day-9.js"></script>
+  <script src="./vul.js"></script>
+  <script src="./day-10.js"></script>
+</body>
+</html>
