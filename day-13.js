@@ -1,4 +1,6 @@
-(async function day10() {
+(async function day13() {
+  const height = 700;
+  const width = 900;
   const csv = await d3.csv("treemap.csv");
   const children = csv.map((country) => ({
     name: country.Country,
@@ -13,10 +15,9 @@
       .filter((d) => d),
   }));
   const data = { children };
-  const height = 700;
-  const width = 900;
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
   const colorScale = d3.scaleOrdinal(d3.schemeSet2);
+
   const dataCopy = JSON.parse(JSON.stringify(data));
   const hierarchy = d3
     .hierarchy(dataCopy)
@@ -25,22 +26,21 @@
 
   const treemap = d3
     .treemap()
-    .size([
-      width - margin.left - margin.right,
-      height - margin.top - margin.bottom,
-    ])
+    .size([width, height])
     .padding(2)
     .paddingTop(10)
     .round(true);
   const root = treemap(hierarchy);
 
   const svg = d3
-    .select("#day-10")
+    .select("#day-13")
     .attr("height", height)
     .attr("width", width)
     .style("font-family", "sans-serif");
 
-  const g = svg.append("g").attr("class", "treemap-container");
+  const g = svg
+    .append("g")
+    .attr("class", "treemap-container day-13-treemap-container");
 
   g.selectAll("text.country")
     .data(root.children)
@@ -99,4 +99,36 @@
       .attr("y", (d, i) => (i ? "2.5em" : "1.15em"))
       .text((d) => d);
   });
+  function revealText() {
+    const leaf = d3.select(".day-13-treemap-container").selectAll("g.leaf");
+    leaf.each((d, i, arr) => {
+      const current = arr[i];
+      const left = d.x0;
+      const right = d.x1;
+      const width = (right - left) * d3.event.transform.k;
+      const top = d.y0;
+      const bottom = d.y1;
+      const height = (d.y1 - d.y0) * d3.event.transform.k;
+
+      const tooSmall = width < 34 || height < 25;
+      d3.select(current)
+        .select("text")
+        .attr("opacity", tooSmall ? 0 : 0.9);
+    });
+  }
+  d3.select(".day-13-treemap-container").call(
+    d3
+      .zoom()
+      .translateExtent([
+        [0, 0],
+        [width, height],
+      ])
+      .scaleExtent([1, 20])
+      .on("zoom", (d, i) => {
+        d3.select("#day-13")
+          .select(".day-13-treemap-container")
+          .attr("transform", d3.event.transform);
+        revealText();
+      })
+  );
 })();
