@@ -1,10 +1,10 @@
 (async function day7() {
-  const allData = await d3.csv("big-mac-raw-index.csv").then(d =>
+  const allData = await d3.csv("big-mac-raw-index.csv").then((d) =>
     d.map(d3.autoType).map(({ date, name, dollar_price, iso_a3 }) => ({
       name,
       iso: iso_a3,
       date: new Date(date),
-      price: dollar_price
+      price: dollar_price,
     }))
   );
 
@@ -12,14 +12,14 @@
     allData.filter(({ iso }) => iso === "USA"),
     allData.filter(({ iso }) => iso === "SWE"),
     allData.filter(({ iso }) => iso === "CHN"),
-    allData.filter(({ iso }) => iso === "EUZ")
+    allData.filter(({ iso }) => iso === "EUZ"),
   ];
 
   const height = 500;
   const width = 900;
   const margin = { top: 10, right: 80, bottom: 30, left: 35 };
 
-  const countryNames = data.map(d => d[0].name);
+  const countryNames = data.map((d) => d[0].name);
   const colors = d3.scaleOrdinal(countryNames, d3.schemeCategory10);
 
   const startDate = data[0][0].date;
@@ -30,7 +30,7 @@
     [margin.left, width - margin.right]
   );
 
-  const prices = data.flat().map(d => d.price);
+  const prices = data.flat().map((d) => d.price);
   const yMax = d3.max(prices);
   const yScale = d3.scaleLinear(
     [0, yMax],
@@ -38,15 +38,15 @@
   );
 
   const formatter = d3.format("$.2f");
-  let yAxis = d3.axisLeft(yScale).tickFormat(d => formatter(d));
+  let yAxis = d3.axisLeft(yScale).tickFormat((d) => formatter(d));
 
   const xAxis = d3.axisBottom(xScale);
 
   const line = d3
-    .line()
-    .x(d => xScale(d.date))
-    .y(d => yScale(d.price))
-    .curve(d3.curveNatural);
+    .line() // line generator
+    .x((d) => xScale(d.date))
+    .y((d) => yScale(d.price))
+    .curve(d3.curveNatural); // curve generator
 
   const svg = d3.select("svg#day-7");
 
@@ -58,7 +58,7 @@
     .join("path")
     .attr("class", "big-mac-line")
     .attr("d", line)
-    .style("stroke", d => colors(d[0].name))
+    .style("stroke", (d) => colors(d[0].name))
     .style("stroke-width", 2)
     .style("fill", "transparent");
 
@@ -68,12 +68,12 @@
     .join("text")
     .attr("class", "label")
     .attr("x", width - margin.right + 5)
-    .attr("y", d => yScale(d[d.length - 1].price))
+    .attr("y", (d) => yScale(d[d.length - 1].price))
     .attr("dy", "0.35em")
-    .style("fill", d => colors(d[0].name))
+    .style("fill", (d) => colors(d[0].name))
     .style("font-family", "sans-serif")
     .style("font-size", 12)
-    .text(d => d[0].name);
+    .text((d) => d[0].name);
 
   svg
     .append("g")
