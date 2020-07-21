@@ -26,7 +26,7 @@
 
   xSlider.addEventListener(
     "input",
-    function() {
+    function () {
       xSliderValue = this.value;
       render();
     },
@@ -35,7 +35,7 @@
 
   ySlider.addEventListener(
     "input",
-    function() {
+    function () {
       ySliderValue = this.value;
       render();
     },
@@ -44,17 +44,14 @@
 
   colorSlider.addEventListener(
     "input",
-    function() {
+    function () {
       colorSliderValue = this.value;
       render();
     },
     false
   );
 
-  const ySliderScale = d3
-    .scaleLinear()
-    .domain([0, 140])
-    .range([0, 130]);
+  const ySliderScale = d3.scaleLinear().domain([0, 140]).range([0, 130]);
 
   const xSliderScale = d3
     .scaleOrdinal()
@@ -67,9 +64,7 @@
     .range(["#eee", "steelblue"]);
 
   function render() {
-    d3.select(".day-2a")
-      .selectAll("rect")
-      .remove();
+    d3.select(".day-2a").selectAll("rect").remove();
 
     d3.select(".day-2a")
       .append("rect")
@@ -83,14 +78,8 @@
   function second() {
     const data = [0, 1, 2, 3, 4];
     const maxHeight = 140;
-    const xScale = d3
-      .scaleOrdinal()
-      .domain(data)
-      .range([10, 40, 70, 100, 130]);
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, 4])
-      .range([10, maxHeight]);
+    const xScale = d3.scaleOrdinal().domain(data).range([10, 40, 70, 100, 130]);
+    const yScale = d3.scaleLinear().domain([0, 4]).range([10, maxHeight]);
     const colorScale = d3
       .scaleLinear()
       .domain([0, 4])
@@ -105,9 +94,9 @@
       .append("rect")
       .attr("width", 20)
       .attr("y", 10)
-      .attr("x", d => xScale(d))
-      .attr("height", d => yScale(d))
-      .style("fill", d => colorScale(d));
+      .attr("x", (d) => xScale(d))
+      .attr("height", (d) => yScale(d))
+      .style("fill", (d) => colorScale(d));
   }
 
   second();

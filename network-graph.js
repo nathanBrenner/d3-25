@@ -62,7 +62,7 @@
 
   const link = svg
     .append("g")
-    .attr("class", "links")
+    .attr("class", "network-graph-links")
     .selectAll("line")
     .data(dataset.links)
     .enter()
@@ -70,7 +70,7 @@
 
   const node = svg
     .append("g")
-    .attr("class", "nodes")
+    .attr("class", "network-graph-nodes")
     .selectAll("circle")
     .data(dataset.nodes)
     .enter()
@@ -91,6 +91,7 @@
     .data(dataset.nodes)
     .enter()
     .append("text")
+    .attr("class", "network-graph-text")
     .text((d) => d.id);
 
   simulation.nodes(dataset.nodes).on("tick", ticked);

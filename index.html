@@ -7,51 +7,86 @@
     <script src="node_modules/noisejs/index.js"></script>
     <script src="node_modules/d3-delaunay/dist/d3-delaunay.js"></script>
     <style>
-      /* .node {
+      .dependancy-node {
         cursor: pointer;
       }
 
-      .node circle {
+      .dependancy-node circle {
+        stroke: red;
+        stroke-width: 2px;
+      }
+
+      .dependancy-node text {
+        font: 16px sans-serif;
+      }
+
+      .dependency-link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+      }
+
+      .collapsable-tree-node {
+        cursor: pointer;
+      }
+
+      .collapsable-tree-node circle {
         fill: #fff;
         stroke: steelblue;
         stroke-width: 3px;
       }
 
-      .node text {
+      .collapsable-tree-node text {
         font: 12px sans-serif;
       }
 
-      .link {
+      .collapsable-tree-link {
         fill: none;
         stroke: #ccc;
         stroke-width: 2px;
-      } */
+      }
 
-      .links line {
+      .network-graph-links line {
         stroke: #000;
       }
 
-      .nodes circle {
+      .network-graph-nodes circle {
         fill: pink;
         stroke: #000;
       }
 
-      text {
+      .network-graph-text {
         pointer-events: none;
       }
     </style>
-    <!-- To start: run `npx http-server -->
+    <!-- To start: run `npx http-server` or go live -->
   </head>
   <body>
+    <div>
+      <h2>collapsable-tree-npm</h2>
+      <button id="critical">critical vulnerabilities</button>
+      <button id="high">high vulnerabilities</button>
+      <svg id="collapsable-tree-npm"></svg>
+    </div>
+    <div>
+      <h2>tidy tree</h2>
+      <svg id="tidy-tree"></svg>
+    </div>
+    <div>
+      <h2>collapsable-tree</h2>
+      <svg id="collapsable-tree"></svg>
+    </div>
+    <div>
+      <h2>network graph-npm</h2>
+      <div>
+        <svg id="network-graph-npm"></svg>
+      </div>
+    </div>
     <div>
       <h2>network graph</h2>
       <div style="max-width: 900px; overflow-x: auto; padding: 0; margin: 0;">
         <svg id="network-graph"></svg>
       </div>
-    </div>
-    <div>
-      <h2>tidy tree</h2>
-      <svg id="derp-tree"></svg>
     </div>
     <div>
       <h2>Day 25 whoadude</h2>
@@ -122,10 +157,6 @@
     <div>
       <h2>Day 17 radial bar chart</h2>
       <svg id="day-17"></svg>
-    </div>
-    <div>
-      <h2>Dependancies</h2>
-      <svg id="dep-graph"></svg>
     </div>
     <div>
       <h2>Day 16 zoomable area chart</h2>
@@ -265,8 +296,10 @@
     <script src="./day-24.js"></script>
     <script src="./day-25.js"></script>
     <script src="./mock-dependancies.js"></script>
-    <script src="./dependancy-tree.js"></script>
-    <script src="./derp-tree.js"></script>
+    <script src="./collapsable-tree.js"></script>
+    <script src="./tidy-tree.js"></script>
     <script src="./network-graph.js"></script>
+    <script src="./network-graph-npm.js"></script>
+    <script src="./collapsable-tree-npm.js"></script>
   </body>
 </html>
